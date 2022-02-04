@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
 import { set1, set2, set3, set4, set5, set6, set7, set8, set9, set10, set11, set12 } from './ReviewQuestions';
-import { setA, setB, setC, setD } from './Questions';
+import { setA, setB, setC, setD, setE, setF, setG } from './Questions';
 
 function App() {
 
@@ -90,14 +90,8 @@ function App() {
     let fnSets = shuffle(sets);
     fnSets.forEach((el) => {
       let randomIndex = Math.floor(Math.random() * el.length);
-      fn.push(el[randomIndex]);
-      if(fn.length < 20) {
-        if(randomIndex > 0) {
-          fn.push(el[randomIndex - 1]);
-        }
-        if(randomIndex === 0) {
-          fn.push(el[randomIndex + 1]);
-        }
+      if(fn.length < 15) {
+        fn.push(el[randomIndex]);
       }
     });
     return fn;
@@ -132,6 +126,18 @@ function App() {
           setTitle("set D - Case Studies");
         break;
         case 17:
+          setQuestionSet(shuffle(setE));
+          setTitle("set E - Case Studies");
+        break;
+        case 18:
+          setQuestionSet(shuffle(setF));
+          setTitle("set F - Case Studies");
+        break;
+        case 19:
+          setQuestionSet(shuffle(setG));
+          setTitle("set G - Case Studies");
+        break;
+        case 20:
           setQuestionSet(randomTest());
           setTitle("Random");
         break;
@@ -192,14 +198,12 @@ function App() {
             <div className="btn btn-lg btn-info mx-2" onClick={() => {resetTest(2);}}>CH 2</div>
             <div className="btn btn-lg btn-info mx-2" onClick={() => {resetTest(3);}}>CH 3</div>
             <div className="btn btn-lg btn-info mx-2" onClick={() => {resetTest(4);}}>CH 4</div>
-          </div>
-          <div className="py-2">
             <div className="btn btn-lg btn-info mx-2" onClick={() => {resetTest(5);}}>CH 5</div>
             <div className="btn btn-lg btn-info mx-2" onClick={() => {resetTest(6);}}>CH 6</div>
-            <div className="btn btn-lg btn-info mx-2" onClick={() => {resetTest(7);}}>CH 7</div>
-            <div className="btn btn-lg btn-info mx-2" onClick={() => {resetTest(8);}}>CH 8</div>
           </div>
           <div className="py-2">
+            <div className="btn btn-lg btn-info mx-2" onClick={() => {resetTest(7);}}>CH 7</div>
+            <div className="btn btn-lg btn-info mx-2" onClick={() => {resetTest(8);}}>CH 8</div>
             <div className="btn btn-lg btn-info mx-2" onClick={() => {resetTest(9);}}>CH 9</div>
             <div className="btn btn-lg btn-info mx-2" onClick={() => {resetTest(10);}}>CH 10</div>
             <div className="btn btn-lg btn-info mx-2" onClick={() => {resetTest(11);}}>CH 11</div>
@@ -211,7 +215,12 @@ function App() {
             <div className="btn btn-lg btn-info mx-2" onClick={() => {resetTest(14);}}>SET B</div>
             <div className="btn btn-lg btn-info mx-2" onClick={() => {resetTest(15);}}>SET C</div>
             <div className="btn btn-lg btn-info mx-2" onClick={() => {resetTest(16);}}>SET D</div>
-            <div className="btn btn-lg btn-info mx-2" onClick={() => {resetTest(17);}}>RANDOM</div>
+          </div>
+          <div className="py-2">
+            <div className="btn btn-lg btn-info mx-2" onClick={() => {resetTest(17);}}>SET E</div>
+            <div className="btn btn-lg btn-info mx-2" onClick={() => {resetTest(18);}}>SET F</div>
+            <div className="btn btn-lg btn-info mx-2" onClick={() => {resetTest(19);}}>SET G</div>
+            <div className="btn btn-lg btn-info mx-2" onClick={() => {resetTest(20);}}>RANDOM</div>
           </div>
           <div className="my-2">{isScored && "Score: " + score + "/" + total}  {isScored && <strong>{((score/total)*100)}%</strong>} &nbsp;</div>
         </div>

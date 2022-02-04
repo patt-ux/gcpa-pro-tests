@@ -193,230 +193,6 @@ export const setA = [
             {'id':2, 'desc':`Cloud Router discovers changed network topology using BGP. That might be valuable if they open offices in Asia, but that doesn't directly expand the services.`},
         ]
     },
-    {
-        'id':2015,
-        'question':`How can you minimize the cost of storing security video files that are processed repeatedly for 30 days?`,
-        'answers': [
-            {'id':0, 'desc':'Standard Storage, then move to Coldline Storage or Archive Storage after 30 days.'},
-            {'id':1, 'desc':'Nearline Storage, then move to Coldline Storage after 30 days.'},
-            {'id':2, 'desc':'Standard Storage, then move to Nearline Storage after 30 days.'},
-            {'id':3, 'desc':'Keep the files in Standard Storage.'},
-        ],
-        'answerId': [0],
-        'rationale': [
-            {'id':0, 'desc':'Standard Storage for lowest access costs over the 30 days, then Coldline Storage or Archive Storage because it is unlikely to be read after the 30 days.'},
-            {'id':1, 'desc':`Using Nearline Storage over the 30 days won't be cost effective because the data is accessed too frequently. There is also a 30 day minimum storage duration.`},
-            {'id':2, 'desc':`Moving from Standard Storage to Nearline Storage after the 30 days isn’t as cost effective as Coldline Storage or Archive Storage if the data is not going to be accessed that frequently.`},
-            {'id':3, 'desc':`Keeping the data in Standard Storage is the least cost effective option if it is not going to be accessed frequently after 30 days.`},
-        ]
-    },
-    {
-        'id':2016,
-        'question':`Because you do not know every possible future use for the data TerramEarth collects, you have decided to build a system that captures and stores all raw data in case you need it later. How can you most cost-effectively accomplish this goal?`,
-        'answers': [
-            {'id':0, 'desc':'Have the vehicles in the field stream the data directly into BigQuery'},
-            {'id':1, 'desc':'Have the vehicles in the field pass the data to Cloud Pub/Sub and dump it into a Cloud Dataproc cluster that stores data in Apache Hadoop Distributed File System (HDFS) on persistent disks'},
-            {'id':2, 'desc':'Have the vehicles in the field continue to dump data via FTP, adjust the existing Linux machines and use a collector to upload them into Cloud Dataproc HDFS for storage'},
-            {'id':3, 'desc':'Have the vehicles in the field continue to dump data via FTP and adjust the existing Linux machines to immediately upload it to Cloud Storage with gsutil'},
-        ],
-        'answerId': [3],
-        'rationale': [
-            {'id':0, 'desc':`BigQuery requires structured data`},
-            {'id':1, 'desc':`Possible, but there's no need to use dataproc - we don't know what the data is or how to process it`},
-            {'id':2, 'desc':`The data dump will work, but there's no need to use dataproc - we don't know what the data is or how to process it`},
-            {'id':3, 'desc':`This uploads it to Cloud Storage for later processing`},
-        ]
-    },
-    {
-        'id':2017,
-        'question':`Where should you upload unstructured Data?`,
-        'answers': [
-            {'id':0, 'desc':'Cloud Storage/Cloud Firestore'},
-            {'id':1, 'desc':'Cloud Bigtable'},
-            {'id':2, 'desc':'BigQuery'},
-            {'id':3, 'desc':'Spanner'},
-            {'id':4, 'desc':'Cloud SQL'},
-        ],
-        'answerId': [0],
-        'rationale': [
-            {'id':0, 'desc':`Unstructured/Files`},
-            {'id':1, 'desc':`Requires Semi-Structured NoSQL`},
-            {'id':2, 'desc':`Requires Structured SQL`},
-            {'id':3, 'desc':`Requires Structured SQL`},
-            {'id':4, 'desc':`Requires Structured SQL`}
-        ]
-    },
-    {
-        'id':2018,
-        'question':`After creating a Deployment named "hello-server", you need to expose it to the internet so that users can access it. You can expose your application by creating a Service, a Kubernetes resource that exposes your application to external traffic.
-        To expose your application, run the following`,
-        'answers': [
-            {'id':0, 'desc':'kubectl expose deployment hello-server --type LoadBalancer --port 80 --target-port 8080'},
-            {'id':1, 'desc':'kubectl run deployment hello-server --type LoadBalancer --port 80 --target-port 8080'},
-            {'id':2, 'desc':'gcloud expose deployment hello-server --type LoadBalancer --port 80 --target-port 8080'},
-            {'id':3, 'desc':'gsutil run deployment hello-server --type LoadBalancer --port 80 --target-port 8080'},
-        ],
-        'answerId': [0],
-        'rationale': [
-            {'id':0, 'desc':`kubectl expose will load balance traffic across the running instances, and can create a HA proxy for accessing the containers from outside the cluster.
-            Passing in the --type LoadBalancer flag creates a Compute Engine load balancer for your container. The --port flag initializes public port 80 to the internet and the --target-port flag routes the traffic to port 8080 of the application.`},
-            {'id':1, 'desc': `kubectl run will start running 1 or more instances of a container image on your cluster.`},
-            {'id':2, 'desc':'gcloud can create a GKE cluster, but this command will not expose it'},
-            {'id':3, 'desc':'gsutil is not an applicable command here'},
-        ]
-    },
-    {
-        'id':2019,
-        'question':`What is the best practice for Indexes?`,
-        'answers': [
-            {'id':0, 'desc':'If a property will never be needed for a query, exclude the property from indexes.'},
-            {'id':1, 'desc':'Avoid having too many composite indexes.'},
-            {'id':2, 'desc':'Do not index properties with monotonically increasing values (such as a NOW() timestamp)'},
-            {'id':3, 'desc':'All of the above'},
-        ],
-        'answerId': [3],
-        'rationale': [
-            {'id':3, 'desc':``}
-        ]
-    },
-    {
-        'id':2021,
-        'question':`During a high traffic portion of the day, one of your relational databases crashes, but the replica is never promoted to a master. You want to avoid this in the future.
-        What should you do?`,
-        'answers': [
-            {'id':0, 'desc':'Use a different database'},
-            {'id':1, 'desc':'Choose larger instances for your database'},
-            {'id':2, 'desc':'Create snapshots of your database more regularly'},
-            {'id':3, 'desc':'Implement routinely scheduled failovers of your databases'},
-        ],
-        'answerId': [1],
-        'rationale': [
-            {'id':1, 'desc':`Cloud SQL instance resources (CPU and RAM) are near 100% usage, causing the high availability instance to go down. The instance machine size is too small for the load.            
-            Things to try: Edit the instance to upgrade to a larger machine size to get more CPUs and memory.`}
-        ]
-    },
-    {
-        'id':2022,
-        'question':`One of the developers on your team deployed their application in Google Container Engine with the Dockerfile below. They report that their application deployments are taking too long. You want to optimize this Dockerfile for faster deployment times without adversely affecting the app's functionality.
-        Which two actions should you take?`,
-        'img':code72e15b4b,
-        'answers': [
-            {'id':0, 'desc':'Remove Python after running pip'},
-            {'id':1, 'desc':'Remove dependencies from requirements.txt'},
-            {'id':2, 'desc':'Use a slimmed-down base image like Alpine Linux'},
-            {'id':3, 'desc':'Use larger machine types for your Google Container Engine node pools'},
-            {'id':4, 'desc':'Copy the source after the package dependencies (Python and pip) are installed'},
-        ],
-        'answerId': [2,4],
-        'rationale': [
-            {'id':2, 'desc':`The speed of deployment can be changed by limiting the size of the uploaded app, limiting the complexity of the build necessary in the Dockerfile, if present, and by ensuring a fast and reliable internet connection.
-            Note: Alpine Linux is built around musl libc and busybox. This makes it smaller and more resource efficient than traditional GNU/Linux distributions. A container requires no more than 8 MB and a minimal installation to disk requires around 130 MB of storage. Not only do you get a fully-fledged Linux environment but a large selection of packages from the repository.`}
-        ]
-    },
-    {
-        'id':2023,
-        'question':`Your company's user-feedback portal comprises a standard LAMP stack replicated across two zones. It is deployed in the us-central1 region and uses autoscaled managed instance groups on all layers, except the database. Currently, only a small group of select customers have access to the portal. The portal meets a
-        99,99% availability SLA under these conditions. However next quarter, your company will be making the portal available to all users, including unauthenticated users. You need to develop a resiliency testing strategy to ensure the system maintains the SLA once they introduce additional user load.
-        What should you do?`,
-        'answers': [
-            {'id':0, 'desc':'Capture existing users input, and replay captured user load until autoscale is triggered on all layers. At the same time, terminate all resources in one of the zones'},
-            {'id':1, 'desc':'Create synthetic random user input, replay synthetic load until autoscale logic is triggered on at least one layer, and introduce "chaos" to the system by terminating random resources on both zones'},
-            {'id':2, 'desc':'Expose the new system to a larger group of users, and increase group size each day until autoscale logic is triggered on all layers. At the same time, terminate random resources on both zones'},
-            {'id':3, 'desc':'Capture existing users input, and replay captured user load until resource utilization crosses 80%. Also, derive estimated number of users based on existing userג€™s usage of the app, and deploy enough resources to handle 200% of expected load'},
-        ],
-        'answerId': [1],
-        'rationale': [
-            {'id':1, 'desc':`Create synthetic random user input, replay synthetic load until autoscale logic is triggered on at least one layer, and introduce chaos to the system by terminating random resources on both zones
-            >> This option takes care of the requirement of testing. Is a pattern used by org like Netflix chaos monkey).`}
-        ]
-    },
-    {
-        'id':2024,
-        'question':`What type of storage is limited to a capacity of 10,230 GB?`,
-        'answers': [
-            {'id':0, 'desc':'Cloud Datastore'},
-            {'id':1, 'desc':'Bigtable'},
-            {'id':2, 'desc':'Cloud Storage'},
-            {'id':3, 'desc':'Cloud SQL'},
-            {'id':4, 'desc':'Cloud Spanner'},
-            {'id':5, 'desc':'Cloud BigQuery'},
-        ],
-        'answerId': [3],
-        'rationale': [
-            {'id':0, 'desc':'Terabytes+ Limit with 1MB/entity Unit size'},
-            {'id':1, 'desc':'Petabytes+ Limit with ~10MB/cell ~100 MB/row Unit size'},
-            {'id':2, 'desc':'Petabytes+ Limit with 5TB/object Unit size'},
-            {'id':3, 'desc':'10,230 Limit with Unit size determined by DB engine'},
-            {'id':4, 'desc':'Petabytes Limit with 10,240 MiB/row Unit size'},
-            {'id':5, 'desc':'Petabytes+ Limit with 10 MB/row Unit size'},
-        ]
-    },
-    {
-        'id':2025,
-        'question':`_____ is a fast, easy-to-use, low-cost and fully managed service that lets you run the Apache Spark and Apache Hadoop ecosystem on Google
-        Cloud Platform. _______ provisions big or small clusters rapidly, supports many popular job types, and is integrated with other Google Cloud Platform services, such as Google Cloud Storage and Stackdriver Logging, thus helping you reduce TCO`,
-        'answers': [
-            {'id':0, 'desc':'Google Cloud Dataflow'},
-            {'id':1, 'desc':'Google Cloud Dataproc'},
-            {'id':2, 'desc':'Google Compute Engine'},
-            {'id':3, 'desc':'Google Kubernetes Engine'},
-        ],
-        'answerId': [1],
-        'rationale': [
-            {'id':1, 'desc':``}
-        ]
-    },
-    {
-        'id':2026,
-        'question':`What are some of Google Cloud Platform's pricing innovations? Select all that Qualify`,
-        'answers': [
-            {'id':0, 'desc':'Robust Infrasturcture'},
-            {'id':1, 'desc':'Sustained-use discounts'},
-            {'id':2, 'desc':'Compute Engine custom machine types'},
-            {'id':3, 'desc':'Open-source technologies'},
-            {'id':4, 'desc':'Sub-hour billing'},
-        ],
-        'answerId': [1,2,4],
-        'rationale': [
-            {'id':1, 'desc':`Sub-hour billing, Sustained-use discounts and Compute Engine custom machine types are pricing innovations`}
-        ]
-    },
-    {
-        'id':2027,
-        'question':`Google's Data Centers were the first to achieve ISO 14001 certification`,
-        'answers': [
-            {'id':0, 'desc':'true'},
-            {'id':4, 'desc':'false'},
-        ],
-        'answerId': [0],
-        'rationale': [
-            {'id':0, 'desc':`Google works to make data centers runas efficiently as possible. Google's data centers were the first to achieve iso 14001 certification. Running data workloads on GCP can help companies achieve their environmental goals.`}
-        ]
-    },
-    {
-        'id':2028,
-        'question':`Why might a GCP customer use resources in several regions around the world?`,
-        'answers': [
-            {'id':0, 'desc':'To bring their applications closer to users around the world, and for improved fault tolerance'},
-            {'id':4, 'desc':'To improve security'},
-        ],
-        'answerId': [0],
-        'rationale': [
-            {'id':0, 'desc':``}
-        ]
-    },
-    {
-        'id':2029,
-        'question':`Why might a GCP customer use resources in several zones within a region?`,
-        'answers': [
-            {'id':0, 'desc':'For improved fault tolerance'},
-            {'id':4, 'desc':'For better performance'},
-        ],
-        'answerId': [0],
-        'rationale': [
-            {'id':0, 'desc':`As part of building a fault-tolerant application, you can spread your resources across multiple zones in a region.`}
-        ]
-    },
 ];
 
 export const setB = [
@@ -878,95 +654,6 @@ export const setC = [
             {'id':0, 'desc':'You can use kubectl to update application image: https://cloud.google.com/kubernetes-engine/docs/how-to/updating-apps#updating_an_application'},
         ]
     },
-    {
-        'id':2416,
-        'question':`TerramEarth wants to migrate to existing python based data ingestion implementation to Google Cloud Platform, What is right fit solution for transformation ?`,
-        'answers': [
-            {'id':0, 'desc':'Cloud Dataflow'},
-            {'id':1, 'desc':'Cloud Dataproc'},
-            {'id':2, 'desc':'Cloud BigQuery'},
-        ],
-        'answerId': [0],
-        'rationale': []
-    },
-    {
-        'id':2417,
-        'question':`Company wants to move existing application data ingest based on Microsoft SQL server to Google Cloud SQL Server, What configuration will you recommend to have server on Failover Clustering ?`,
-        'answers': [
-            {'id':0, 'desc':'Use Kubernetes to deploy SQL Server to take care high availability '},
-            {'id':1, 'desc':'Use Google Cloud SQL Server instance - its always configured for high availability by default. '},
-            {'id':2, 'desc':'Use Instance Groups and Template and use Microsoft SQL Server image to launch instances.  '},
-            {'id':3, 'desc':'Configure AlwaysOn Availability Groups for all instance in cluster'},
-        ],
-        'answerId': [3],
-        'rationale': []
-    },
-    {
-        'id':2418,
-        'question':`Company wants to simulate analytics processing for games being played over slow (or intermittent) (phone) internet connection while in remote area. How they can achieve it in test environment?`,
-        'answers': [
-            {'id':0, 'desc':'Migrate gaming analytics to Cloud Dataproc. '},
-            {'id':1, 'desc':'Deploy gaming backed in Cloud Function. '},
-            {'id':2, 'desc':'Create random delay in collecting and processing data by analytics platform. '},
-            {'id':3, 'desc':'Deploy game in Computer Mobile applications simulator( Changes in gaming backend not required )'},
-        ],
-        'answerId': [2],
-        'rationale': [{'id':2, 'desc':`Creating random delay in analytics platform will help MountKirk to test slow data coming from games. The existing game testing application can be used to do this without making any changes to game.`}]
-    },
-    {
-        'id':2419,
-        'question':`Terramearth decided to use BigQuery as Data warehouse solution. The data is expected to be very big (more than 20 TB per week) and they are looking at best possible ways to store and manage data. What is best possible configuration in BigQuery for this use case ?`,
-        'answers': [
-            {'id':0, 'desc':'Use federated data sets'},
-            {'id':1, 'desc':'Use Cloud Storage to store data and load it whenever required'},
-            {'id':2, 'desc':'Spread the data in multiple regions'},
-            {'id':3, 'desc':'Use time based partition for dataset\'s tables'},
-        ],
-        'answerId': [3],
-        'rationale': []
-    },
-    {
-        'id':2420,
-        'question':`Marketing company have digital assets (Videos, Images, flyer, audios etc) hosted in Cloud Storage. These assets are used rarely by different business units, You are tasked to design solution to systematically distribute the cost to different accounts/projects based on their usage. Company is ready to pay minimum cost to store the data in cloud storage. What will be your solution to distribute cost?`,
-        'answers': [
-            {'id':0, 'desc':'Storage data in individual buckets in respective project, configure lifecycle polity to move data between different projects based on need.'},
-            {'id':1, 'desc':'Store data in Cloud Storage with Coldline storage bucket, This will reduce storage cost for huge data.'},
-            {'id':2, 'desc':'Create buckets in different projects and copy the content in all buckets and depends on data access choose Nearline or Coldline as storage class to save cost'},
-            {'id':3, 'desc':'Store data in common bucket and provide access to all accounts/projects, Set Storage class to Nearline or Coldline based on access pattern, Configure Requester pays (access fees) for all bucket.'},
-        ],
-        'answerId': [3],
-        'rationale': [
-            {'id':3, 'desc':'Requester pays enables fees(access fees) to be paid by requester and not by owner.'}
-        ]
-    },
-    {
-        'id':2421,
-        'question':`The development team has provided you with a Kubernetes Deployment file. You have no infrastructure yet and need to deploy the application. What should you do?`,
-        'answers': [
-            {'id':0, 'desc':'Use gcloud to create a Kubernetes cluster. Use Deployment Manager to create the deployment.'},
-            {'id':1, 'desc':'Use gcloud to create a Kubernetes cluster. Use kubectl to create the deployment.'},
-            {'id':2, 'desc':'Use kubectl to create a Kubernetes cluster. Use kubectl to create the deployment.'},
-            {'id':3, 'desc':'Use kubectl to create a Kubernetes cluster. Use Deployment Manager to create the deployment.'},
-        ],
-        'answerId': [1],
-        'rationale': [
-            {'id':1, 'desc':''}
-        ]
-    },
-    {
-        'id':2422,
-        'question':`What is the effective policy for a resource at a node?`,
-        'answers': [
-            {'id':0, 'desc':'The effective policy is the union of the policy set at the node and policies inherited from its ancestors'},
-            {'id':1, 'desc':'The effective policy is determined only by the policy set at the node'},
-            {'id':2, 'desc':'The effective policy is the policy set at the node and restricted by the policies of its ancestors'},
-            {'id':3, 'desc':'The effective policy is the intersection of the policy set at the node and policies inherited from its ancestors'},
-        ],
-        'answerId': [0],
-        'rationale': [
-            {'id':0, 'desc':'" The effective policy for a resource is the union of the policy set on the resource and the policy inherited from its ancestors. This inheritance is transitive. In other words, resources inherit policies from the project, which inherit policies from the organization "'}
-        ]
-    },
 ];
 
 export const setD = [
@@ -1183,6 +870,10 @@ export const setD = [
         'rationale': [
             {'id':0, 'desc':``},]
     },
+];
+
+export const setE = [
+
     {
         'id':2516,
         'question':`You set up an autoscaling managed instance group to serve web traffic for an upcoming launch. After configuring the instance group as a backend service to an HTTP(S) load balancer, you notice that virtual machine (VM) instances are being terminated and re-launched every minute. The instances do not have a public IP address. You have verified that the appropriate web response is coming from each instance using the curl command. You want to ensure that the backend is configured correctly. What should you do?`,
@@ -1344,6 +1035,326 @@ export const setD = [
         'answerId': [1],
         'rationale': [
             {'id':0, 'desc':``},]
+    },
+    {
+        'id':2417,
+        'question':`Company wants to move existing application data ingest based on Microsoft SQL server to Google Cloud SQL Server, What configuration will you recommend to have server on Failover Clustering ?`,
+        'answers': [
+            {'id':0, 'desc':'Use Kubernetes to deploy SQL Server to take care high availability '},
+            {'id':1, 'desc':'Use Google Cloud SQL Server instance - its always configured for high availability by default. '},
+            {'id':2, 'desc':'Use Instance Groups and Template and use Microsoft SQL Server image to launch instances.  '},
+            {'id':3, 'desc':'Configure AlwaysOn Availability Groups for all instance in cluster'},
+        ],
+        'answerId': [3],
+        'rationale': []
+    },
+    {
+        'id':2418,
+        'question':`Company wants to simulate analytics processing for games being played over slow (or intermittent) (phone) internet connection while in remote area. How they can achieve it in test environment?`,
+        'answers': [
+            {'id':0, 'desc':'Migrate gaming analytics to Cloud Dataproc. '},
+            {'id':1, 'desc':'Deploy gaming backed in Cloud Function. '},
+            {'id':2, 'desc':'Create random delay in collecting and processing data by analytics platform. '},
+            {'id':3, 'desc':'Deploy game in Computer Mobile applications simulator( Changes in gaming backend not required )'},
+        ],
+        'answerId': [2],
+        'rationale': [{'id':2, 'desc':`Creating random delay in analytics platform will help MountKirk to test slow data coming from games. The existing game testing application can be used to do this without making any changes to game.`}]
+    },
+    {
+        'id':2419,
+        'question':`Terramearth decided to use BigQuery as Data warehouse solution. The data is expected to be very big (more than 20 TB per week) and they are looking at best possible ways to store and manage data. What is best possible configuration in BigQuery for this use case ?`,
+        'answers': [
+            {'id':0, 'desc':'Use federated data sets'},
+            {'id':1, 'desc':'Use Cloud Storage to store data and load it whenever required'},
+            {'id':2, 'desc':'Spread the data in multiple regions'},
+            {'id':3, 'desc':'Use time based partition for dataset\'s tables'},
+        ],
+        'answerId': [3],
+        'rationale': []
+    },
+];
+
+export const setF = [
+    {
+        'id':2015,
+        'question':`How can you minimize the cost of storing security video files that are processed repeatedly for 30 days?`,
+        'answers': [
+            {'id':0, 'desc':'Standard Storage, then move to Coldline Storage or Archive Storage after 30 days.'},
+            {'id':1, 'desc':'Nearline Storage, then move to Coldline Storage after 30 days.'},
+            {'id':2, 'desc':'Standard Storage, then move to Nearline Storage after 30 days.'},
+            {'id':3, 'desc':'Keep the files in Standard Storage.'},
+        ],
+        'answerId': [0],
+        'rationale': [
+            {'id':0, 'desc':'Standard Storage for lowest access costs over the 30 days, then Coldline Storage or Archive Storage because it is unlikely to be read after the 30 days.'},
+            {'id':1, 'desc':`Using Nearline Storage over the 30 days won't be cost effective because the data is accessed too frequently. There is also a 30 day minimum storage duration.`},
+            {'id':2, 'desc':`Moving from Standard Storage to Nearline Storage after the 30 days isn’t as cost effective as Coldline Storage or Archive Storage if the data is not going to be accessed that frequently.`},
+            {'id':3, 'desc':`Keeping the data in Standard Storage is the least cost effective option if it is not going to be accessed frequently after 30 days.`},
+        ]
+    },
+    {
+        'id':2016,
+        'question':`Because you do not know every possible future use for the data TerramEarth collects, you have decided to build a system that captures and stores all raw data in case you need it later. How can you most cost-effectively accomplish this goal?`,
+        'answers': [
+            {'id':0, 'desc':'Have the vehicles in the field stream the data directly into BigQuery'},
+            {'id':1, 'desc':'Have the vehicles in the field pass the data to Cloud Pub/Sub and dump it into a Cloud Dataproc cluster that stores data in Apache Hadoop Distributed File System (HDFS) on persistent disks'},
+            {'id':2, 'desc':'Have the vehicles in the field continue to dump data via FTP, adjust the existing Linux machines and use a collector to upload them into Cloud Dataproc HDFS for storage'},
+            {'id':3, 'desc':'Have the vehicles in the field continue to dump data via FTP and adjust the existing Linux machines to immediately upload it to Cloud Storage with gsutil'},
+        ],
+        'answerId': [3],
+        'rationale': [
+            {'id':0, 'desc':`BigQuery requires structured data`},
+            {'id':1, 'desc':`Possible, but there's no need to use dataproc - we don't know what the data is or how to process it`},
+            {'id':2, 'desc':`The data dump will work, but there's no need to use dataproc - we don't know what the data is or how to process it`},
+            {'id':3, 'desc':`This uploads it to Cloud Storage for later processing`},
+        ]
+    },
+    {
+        'id':2017,
+        'question':`Where should you upload unstructured Data?`,
+        'answers': [
+            {'id':0, 'desc':'Cloud Storage/Cloud Firestore'},
+            {'id':1, 'desc':'Cloud Bigtable'},
+            {'id':2, 'desc':'BigQuery'},
+            {'id':3, 'desc':'Spanner'},
+            {'id':4, 'desc':'Cloud SQL'},
+        ],
+        'answerId': [0],
+        'rationale': [
+            {'id':0, 'desc':`Unstructured/Files`},
+            {'id':1, 'desc':`Requires Semi-Structured NoSQL`},
+            {'id':2, 'desc':`Requires Structured SQL`},
+            {'id':3, 'desc':`Requires Structured SQL`},
+            {'id':4, 'desc':`Requires Structured SQL`}
+        ]
+    },
+    {
+        'id':2018,
+        'question':`After creating a Deployment named "hello-server", you need to expose it to the internet so that users can access it. You can expose your application by creating a Service, a Kubernetes resource that exposes your application to external traffic.
+        To expose your application, run the following`,
+        'answers': [
+            {'id':0, 'desc':'kubectl expose deployment hello-server --type LoadBalancer --port 80 --target-port 8080'},
+            {'id':1, 'desc':'kubectl run deployment hello-server --type LoadBalancer --port 80 --target-port 8080'},
+            {'id':2, 'desc':'gcloud expose deployment hello-server --type LoadBalancer --port 80 --target-port 8080'},
+            {'id':3, 'desc':'gsutil run deployment hello-server --type LoadBalancer --port 80 --target-port 8080'},
+        ],
+        'answerId': [0],
+        'rationale': [
+            {'id':0, 'desc':`kubectl expose will load balance traffic across the running instances, and can create a HA proxy for accessing the containers from outside the cluster.
+            Passing in the --type LoadBalancer flag creates a Compute Engine load balancer for your container. The --port flag initializes public port 80 to the internet and the --target-port flag routes the traffic to port 8080 of the application.`},
+            {'id':1, 'desc': `kubectl run will start running 1 or more instances of a container image on your cluster.`},
+            {'id':2, 'desc':'gcloud can create a GKE cluster, but this command will not expose it'},
+            {'id':3, 'desc':'gsutil is not an applicable command here'},
+        ]
+    },
+    {
+        'id':2019,
+        'question':`What is the best practice for Indexes?`,
+        'answers': [
+            {'id':0, 'desc':'If a property will never be needed for a query, exclude the property from indexes.'},
+            {'id':1, 'desc':'Avoid having too many composite indexes.'},
+            {'id':2, 'desc':'Do not index properties with monotonically increasing values (such as a NOW() timestamp)'},
+            {'id':3, 'desc':'All of the above'},
+        ],
+        'answerId': [3],
+        'rationale': [
+            {'id':3, 'desc':``}
+        ]
+    },
+    {
+        'id':2021,
+        'question':`During a high traffic portion of the day, one of your relational databases crashes, but the replica is never promoted to a master. You want to avoid this in the future.
+        What should you do?`,
+        'answers': [
+            {'id':0, 'desc':'Use a different database'},
+            {'id':1, 'desc':'Choose larger instances for your database'},
+            {'id':2, 'desc':'Create snapshots of your database more regularly'},
+            {'id':3, 'desc':'Implement routinely scheduled failovers of your databases'},
+        ],
+        'answerId': [1],
+        'rationale': [
+            {'id':1, 'desc':`Cloud SQL instance resources (CPU and RAM) are near 100% usage, causing the high availability instance to go down. The instance machine size is too small for the load.            
+            Things to try: Edit the instance to upgrade to a larger machine size to get more CPUs and memory.`}
+        ]
+    },
+    {
+        'id':2022,
+        'question':`One of the developers on your team deployed their application in Google Container Engine with the Dockerfile below. They report that their application deployments are taking too long. You want to optimize this Dockerfile for faster deployment times without adversely affecting the app's functionality.
+        Which two actions should you take?`,
+        'img':code72e15b4b,
+        'answers': [
+            {'id':0, 'desc':'Remove Python after running pip'},
+            {'id':1, 'desc':'Remove dependencies from requirements.txt'},
+            {'id':2, 'desc':'Use a slimmed-down base image like Alpine Linux'},
+            {'id':3, 'desc':'Use larger machine types for your Google Container Engine node pools'},
+            {'id':4, 'desc':'Copy the source after the package dependencies (Python and pip) are installed'},
+        ],
+        'answerId': [2,4],
+        'rationale': [
+            {'id':2, 'desc':`The speed of deployment can be changed by limiting the size of the uploaded app, limiting the complexity of the build necessary in the Dockerfile, if present, and by ensuring a fast and reliable internet connection.
+            Note: Alpine Linux is built around musl libc and busybox. This makes it smaller and more resource efficient than traditional GNU/Linux distributions. A container requires no more than 8 MB and a minimal installation to disk requires around 130 MB of storage. Not only do you get a fully-fledged Linux environment but a large selection of packages from the repository.`}
+        ]
+    },
+    {
+        'id':2023,
+        'question':`Your company's user-feedback portal comprises a standard LAMP stack replicated across two zones. It is deployed in the us-central1 region and uses autoscaled managed instance groups on all layers, except the database. Currently, only a small group of select customers have access to the portal. The portal meets a
+        99,99% availability SLA under these conditions. However next quarter, your company will be making the portal available to all users, including unauthenticated users. You need to develop a resiliency testing strategy to ensure the system maintains the SLA once they introduce additional user load.
+        What should you do?`,
+        'answers': [
+            {'id':0, 'desc':'Capture existing users input, and replay captured user load until autoscale is triggered on all layers. At the same time, terminate all resources in one of the zones'},
+            {'id':1, 'desc':'Create synthetic random user input, replay synthetic load until autoscale logic is triggered on at least one layer, and introduce "chaos" to the system by terminating random resources on both zones'},
+            {'id':2, 'desc':'Expose the new system to a larger group of users, and increase group size each day until autoscale logic is triggered on all layers. At the same time, terminate random resources on both zones'},
+            {'id':3, 'desc':'Capture existing users input, and replay captured user load until resource utilization crosses 80%. Also, derive estimated number of users based on existing user\'s usage of the app, and deploy enough resources to handle 200% of expected load'},
+        ],
+        'answerId': [1],
+        'rationale': [
+            {'id':1, 'desc':`Create synthetic random user input, replay synthetic load until autoscale logic is triggered on at least one layer, and introduce chaos to the system by terminating random resources on both zones
+            >> This option takes care of the requirement of testing. Is a pattern used by org like Netflix chaos monkey).`}
+        ]
+    },
+    {
+        'id':2024,
+        'question':`What type of storage is limited to a capacity of 10,230 GB?`,
+        'answers': [
+            {'id':0, 'desc':'Cloud Datastore'},
+            {'id':1, 'desc':'Bigtable'},
+            {'id':2, 'desc':'Cloud Storage'},
+            {'id':3, 'desc':'Cloud SQL'},
+            {'id':4, 'desc':'Cloud Spanner'},
+            {'id':5, 'desc':'Cloud BigQuery'},
+        ],
+        'answerId': [3],
+        'rationale': [
+            {'id':0, 'desc':'Terabytes+ Limit with 1MB/entity Unit size'},
+            {'id':1, 'desc':'Petabytes+ Limit with ~10MB/cell ~100 MB/row Unit size'},
+            {'id':2, 'desc':'Petabytes+ Limit with 5TB/object Unit size'},
+            {'id':3, 'desc':'10,230 Limit with Unit size determined by DB engine'},
+            {'id':4, 'desc':'Petabytes Limit with 10,240 MiB/row Unit size'},
+            {'id':5, 'desc':'Petabytes+ Limit with 10 MB/row Unit size'},
+        ]
+    },
+    {
+        'id':2025,
+        'question':`_____ is a fast, easy-to-use, low-cost and fully managed service that lets you run the Apache Spark and Apache Hadoop ecosystem on Google
+        Cloud Platform. _______ provisions big or small clusters rapidly, supports many popular job types, and is integrated with other Google Cloud Platform services, such as Google Cloud Storage and Stackdriver Logging, thus helping you reduce TCO`,
+        'answers': [
+            {'id':0, 'desc':'Google Cloud Dataflow'},
+            {'id':1, 'desc':'Google Cloud Dataproc'},
+            {'id':2, 'desc':'Google Compute Engine'},
+            {'id':3, 'desc':'Google Kubernetes Engine'},
+        ],
+        'answerId': [1,3],
+        'rationale': [
+            {'id':1, 'desc':``}
+        ]
+    },
+    {
+        'id':2026,
+        'question':`What are some of Google Cloud Platform's pricing innovations? Select all that Qualify`,
+        'answers': [
+            {'id':0, 'desc':'Robust Infrasturcture'},
+            {'id':1, 'desc':'Sustained-use discounts'},
+            {'id':2, 'desc':'Compute Engine custom machine types'},
+            {'id':3, 'desc':'Open-source technologies'},
+            {'id':4, 'desc':'Sub-hour billing'},
+        ],
+        'answerId': [1,2,4],
+        'rationale': [
+            {'id':1, 'desc':`Sub-hour billing, Sustained-use discounts and Compute Engine custom machine types are pricing innovations`}
+        ]
+    },
+    {
+        'id':2027,
+        'question':`Google's Data Centers were the first to achieve ISO 14001 certification`,
+        'answers': [
+            {'id':0, 'desc':'true'},
+            {'id':4, 'desc':'false'},
+        ],
+        'answerId': [0],
+        'rationale': [
+            {'id':0, 'desc':`Google works to make data centers runas efficiently as possible. Google's data centers were the first to achieve iso 14001 certification. Running data workloads on GCP can help companies achieve their environmental goals.`}
+        ]
+    },
+    {
+        'id':2028,
+        'question':`Why might a GCP customer use resources in several regions around the world?`,
+        'answers': [
+            {'id':0, 'desc':'To bring their applications closer to users around the world, and for improved fault tolerance'},
+            {'id':4, 'desc':'To improve security'},
+        ],
+        'answerId': [0],
+        'rationale': [
+            {'id':0, 'desc':``}
+        ]
+    },
+    {
+        'id':2029,
+        'question':`Why might a GCP customer use resources in several zones within a region?`,
+        'answers': [
+            {'id':0, 'desc':'For improved fault tolerance'},
+            {'id':4, 'desc':'For better performance'},
+        ],
+        'answerId': [0],
+        'rationale': [
+            {'id':0, 'desc':`As part of building a fault-tolerant application, you can spread your resources across multiple zones in a region.`}
+        ]
+    },
+    {
+        'id':2416,
+        'question':`TerramEarth wants to migrate to existing python based data ingestion implementation to Google Cloud Platform, What is right fit solution for transformation ?`,
+        'answers': [
+            {'id':0, 'desc':'Cloud Dataflow'},
+            {'id':1, 'desc':'Cloud Dataproc'},
+            {'id':2, 'desc':'Cloud BigQuery'},
+        ],
+        'answerId': [0],
+        'rationale': []
+    },
+];
+
+export const setG = [
+
+    {
+        'id':2420,
+        'question':`Marketing company have digital assets (Videos, Images, flyer, audios etc) hosted in Cloud Storage. These assets are used rarely by different business units, You are tasked to design solution to systematically distribute the cost to different accounts/projects based on their usage. Company is ready to pay minimum cost to store the data in cloud storage. What will be your solution to distribute cost?`,
+        'answers': [
+            {'id':0, 'desc':'Storage data in individual buckets in respective project, configure lifecycle polity to move data between different projects based on need.'},
+            {'id':1, 'desc':'Store data in Cloud Storage with Coldline storage bucket, This will reduce storage cost for huge data.'},
+            {'id':2, 'desc':'Create buckets in different projects and copy the content in all buckets and depends on data access choose Nearline or Coldline as storage class to save cost'},
+            {'id':3, 'desc':'Store data in common bucket and provide access to all accounts/projects, Set Storage class to Nearline or Coldline based on access pattern, Configure Requester pays (access fees) for all bucket.'},
+        ],
+        'answerId': [3],
+        'rationale': [
+            {'id':3, 'desc':'Requester pays enables fees(access fees) to be paid by requester and not by owner.'}
+        ]
+    },
+    {
+        'id':2421,
+        'question':`The development team has provided you with a Kubernetes Deployment file. You have no infrastructure yet and need to deploy the application. What should you do?`,
+        'answers': [
+            {'id':0, 'desc':'Use gcloud to create a Kubernetes cluster. Use Deployment Manager to create the deployment.'},
+            {'id':1, 'desc':'Use gcloud to create a Kubernetes cluster. Use kubectl to create the deployment.'},
+            {'id':2, 'desc':'Use kubectl to create a Kubernetes cluster. Use kubectl to create the deployment.'},
+            {'id':3, 'desc':'Use kubectl to create a Kubernetes cluster. Use Deployment Manager to create the deployment.'},
+        ],
+        'answerId': [1],
+        'rationale': [
+            {'id':1, 'desc':''}
+        ]
+    },
+    {
+        'id':2422,
+        'question':`What is the effective policy for a resource at a node?`,
+        'answers': [
+            {'id':0, 'desc':'The effective policy is the union of the policy set at the node and policies inherited from its ancestors'},
+            {'id':1, 'desc':'The effective policy is determined only by the policy set at the node'},
+            {'id':2, 'desc':'The effective policy is the policy set at the node and restricted by the policies of its ancestors'},
+            {'id':3, 'desc':'The effective policy is the intersection of the policy set at the node and policies inherited from its ancestors'},
+        ],
+        'answerId': [0],
+        'rationale': [
+            {'id':0, 'desc':'" The effective policy for a resource is the union of the policy set on the resource and the policy inherited from its ancestors. This inheritance is transitive. In other words, resources inherit policies from the project, which inherit policies from the organization "'}
+        ]
     },
 ];
 /*
