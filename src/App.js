@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
-import { set1, set2, set3, set4, set5, set6, set7, set8, set9, set10, set11, set12 } from './ReviewQuestions';
-import { setA, setB, setC, setD, setE, setF, setG } from './Questions';
+import { set1, set2, set3, set4, set5, set6, set7, set8, set9, set10, set11, set12 } from './questions/reviewQuestions';
+import { setA, setB, setC, setD, setE, setF, setG } from './questions/questions';
 
 function App() {
 
@@ -11,9 +11,17 @@ function App() {
   const [showHRL, setShowHRL] = useState(false);
   const [showTE, setShowTE] = useState(false);
 
-  const sets = [set1, set2, set3, set4, set5, set6, set7, set8, set9, set10, set11, set12, setD];
+  const sets = [set1, set2, set3, set4, set5, set6, set7, set8, set9, set10, set11, set12];
+  const miscSets = [
+    {name:'Set A - Random Questions',set:setA},
+    {name:'Set B - Current Test',set:setB},
+    {name:'Set C - Udemy Test',set:setC},
+    {name:'Set D - Case Studies',set:setD},
+    {name:'Set E - Case Studies',set:setE},
+    {name:'Set F - Case Studies',set:setF},
+    {name:'Set G - Case Studies',set:setG}];
   const letters = ['A','B','C','D','E','F'];
-  const [title, setTitle] = useState("");
+  const [title, setTitle] = useState('');
   const [questionSet, setQuestionSet] = useState([]);
   const [answerSheet, setAnswerSheet] = useState({});
   const [total, setTotal] = useState(0);
@@ -103,49 +111,18 @@ function App() {
     setQuestionSet([]);
     setAnswerSheet({});
     setIsScored(false);
-    if(setType > 0 && setType < 13) {
-      setQuestionSet(shuffle(sets[setType - 1]));
-      setTitle("CH " + setType);
-    }
-    if(setType === 0 || setType > 12) {
-      switch(setType) {
-        case 13:
-          setQuestionSet(shuffle(setA));
-          setTitle("set A - Random Questions");
-        break;
-        case 14:
-          setQuestionSet(shuffle(setB));
-          setTitle("set B - Current Test");
-        break;
-        case 15:
-          setQuestionSet(shuffle(setC));
-          setTitle("set C - Udemy Test");
-        break;
-        case 16:
-          setQuestionSet(shuffle(setD));
-          setTitle("set D - Case Studies");
-        break;
-        case 17:
-          setQuestionSet(shuffle(setE));
-          setTitle("set E - Case Studies");
-        break;
-        case 18:
-          setQuestionSet(shuffle(setF));
-          setTitle("set F - Case Studies");
-        break;
-        case 19:
-          setQuestionSet(shuffle(setG));
-          setTitle("set G - Case Studies");
-        break;
-        case 20:
-          setQuestionSet(randomTest());
-          setTitle("Random");
-        break;
-        default:
-          setQuestionSet([]);
-          setTitle("None Selected");
-        break;
+    if(setType !== 20) {
+      if(setType > 0 && setType < 13) {
+        setQuestionSet(shuffle(sets[setType - 1]));
+        setTitle('CH ' + setType);
       }
+      if(setType === 0 || setType > 12) {
+        setQuestionSet(shuffle(miscSets[setType - 13].set));
+        setTitle(miscSets[setType - 13].name);
+      }
+    } else {
+      setQuestionSet(randomTest());
+      setTitle('Random');
     }
     setIsStarted(true);
   }
@@ -159,95 +136,78 @@ function App() {
   };
 
   return (
-    <div className="App">
-      <div className="caseStudyBox">
+    <div className='App'>
+      <div className='caseStudyBox'>
         <div>CASE STUDIES</div>
-        <div className="cs">
-          <div className="cs-title" onClick={() => {setShowMK(!showMK)}}>MountKirk</div>
+        <div className='cs'>
+          <div className='cs-title' onClick={() => {setShowMK(!showMK)}}>MountKirk</div>
           {showMK &&
-          <div className="cs-details"><a target="_blank" href='https://services.google.com/fh/files/blogs/master_case_study_mountkirk_games.pdf' rel="noreferrer">DETAILS</a></div>
+          <div className='cs-details'><a target='_blank' href='https://services.google.com/fh/files/blogs/master_case_study_mountkirk_games.pdf' rel='noreferrer'>DETAILS</a></div>
           }
         </div>
-        <div className="cs">
-          <div className="cs-title" onClick={() => {setShowTE(!showTE)}}>TerramEarth</div>
+        <div className='cs'>
+          <div className='cs-title' onClick={() => {setShowTE(!showTE)}}>TerramEarth</div>
           {showTE &&
-          <div className="cs-details"><a target="_blank" href='https://services.google.com/fh/files/blogs/master_case_study_terramearth.pdf' rel="noreferrer">DETAILS</a></div>
+          <div className='cs-details'><a target='_blank' href='https://services.google.com/fh/files/blogs/master_case_study_terramearth.pdf' rel='noreferrer'>DETAILS</a></div>
           }
         </div>
-        <div className="cs">
-          <div className="cs-title" onClick={() => {setShowHRL(!showHRL)}}>Helicopter Racing League</div>
+        <div className='cs'>
+          <div className='cs-title' onClick={() => {setShowHRL(!showHRL)}}>Helicopter Racing League</div>
           {showHRL &&
-          <div className="cs-details"><a target="_blank" href='https://services.google.com/fh/files/blogs/master_case_study_helicopter_racing_league.pdf' rel="noreferrer">DETAILS</a></div>
+          <div className='cs-details'><a target='_blank' href='https://services.google.com/fh/files/blogs/master_case_study_helicopter_racing_league.pdf' rel='noreferrer'>DETAILS</a></div>
           }
         </div>
-        <div className="cs">
-          <div className="cs-title" onClick={() => {setShowHC(!showHC)}}>EHR Healthcare</div>
+        <div className='cs'>
+          <div className='cs-title' onClick={() => {setShowHC(!showHC)}}>EHR Healthcare</div>
           {showHC &&
-          <div className="cs-details"><a target="_blank" href='https://services.google.com/fh/files/blogs/master_case_study_ehr_healthcare.pdf' rel="noreferrer">DETAILS</a></div>
+          <div className='cs-details'><a target='_blank' href='https://services.google.com/fh/files/blogs/master_case_study_ehr_healthcare.pdf' rel='noreferrer'>DETAILS</a></div>
           }
         </div>
       </div>
-      <div className="container" style={{maxWidth:"700px"}}>
-        <div className="py-2 mt-4">
+      <div className='container' style={{maxWidth:'700px'}}>
+        <div className='py-2 mt-4'>
         <h3>GCP Architect Pro - Test Questions</h3>
         </div>
-        <div className="py-2 mt-4">
-          <div>
-            <div>Prep Course Questions</div>
-            <div className="btn btn-lg btn-info" onClick={() => {resetTest(1);}}>CH 1</div>
-            <div className="btn btn-lg btn-info mx-2" onClick={() => {resetTest(2);}}>CH 2</div>
-            <div className="btn btn-lg btn-info mx-2" onClick={() => {resetTest(3);}}>CH 3</div>
-            <div className="btn btn-lg btn-info mx-2" onClick={() => {resetTest(4);}}>CH 4</div>
-            <div className="btn btn-lg btn-info mx-2" onClick={() => {resetTest(5);}}>CH 5</div>
-            <div className="btn btn-lg btn-info mx-2" onClick={() => {resetTest(6);}}>CH 6</div>
+        <div className='py-2 mt-4'>
+          <div className='course-btns'>
+            <div>GCP Prep Course Questions</div>
+            {sets.map((a, index) => 
+              (<div key={index} className='btn btn-sm btn-info' onClick={() => {resetTest(index +1);}}>CH {index +1}</div>)
+            )}
           </div>
-          <div className="py-2">
-            <div className="btn btn-lg btn-info mx-2" onClick={() => {resetTest(7);}}>CH 7</div>
-            <div className="btn btn-lg btn-info mx-2" onClick={() => {resetTest(8);}}>CH 8</div>
-            <div className="btn btn-lg btn-info mx-2" onClick={() => {resetTest(9);}}>CH 9</div>
-            <div className="btn btn-lg btn-info mx-2" onClick={() => {resetTest(10);}}>CH 10</div>
-            <div className="btn btn-lg btn-info mx-2" onClick={() => {resetTest(11);}}>CH 11</div>
-            <div className="btn btn-lg btn-info" onClick={() => {resetTest(12);}}>CH 12</div>
+          <div className='py-2 course-btns'>
+            <div>Misc Practice Test Questions</div>
+            {miscSets.map((a, index) => 
+              (<div key={index} className='btn btn-sm btn-info' onClick={() => {resetTest(index +13);}}>{a.name}</div>)
+            )}
+            <div className='btn btn-sm btn-info' onClick={() => {resetTest(20);}}>RANDOM</div>
           </div>
-          <div className="py-2">
-            <div>Misc Questions</div>
-            <div className="btn btn-lg btn-info mx-2" onClick={() => {resetTest(13);}}>SET A</div>
-            <div className="btn btn-lg btn-info mx-2" onClick={() => {resetTest(14);}}>SET B</div>
-            <div className="btn btn-lg btn-info mx-2" onClick={() => {resetTest(15);}}>SET C</div>
-            <div className="btn btn-lg btn-info mx-2" onClick={() => {resetTest(16);}}>SET D</div>
-          </div>
-          <div className="py-2">
-            <div className="btn btn-lg btn-info mx-2" onClick={() => {resetTest(17);}}>SET E</div>
-            <div className="btn btn-lg btn-info mx-2" onClick={() => {resetTest(18);}}>SET F</div>
-            <div className="btn btn-lg btn-info mx-2" onClick={() => {resetTest(19);}}>SET G</div>
-            <div className="btn btn-lg btn-info mx-2" onClick={() => {resetTest(20);}}>RANDOM</div>
-          </div>
-          <div className="my-2">{isScored && "Score: " + score + "/" + total}  {isScored && <strong>{((score/total)*100)}%</strong>} &nbsp;</div>
+          <div className='my-2'>{isScored && 'Score: ' + score + '/' + total}  {isScored && <strong>{((score/total)*100)}%</strong>} &nbsp;</div>
         </div>
         <div>
           {questionSet.length > 0 &&
-            <div className="pb-2" style={{fontSize:"30px",fontWeight:"bold"}}>{title} - TIME {2 * questionSet.length} Minutes</div>
+            <div className='pb-2' style={{fontSize:'30px',fontWeight:'bold'}}>{title} - TIME {2 * questionSet.length} Minutes</div>
           }
         {questionSet.map((q, i) => 
           (
-            <div className="row py-2" key={q.id}>
-              <div className="col" style={{textAlign:'left'}}>
-                <div className="py-2 d-flex">
+            <div className='row py-2' key={q.id}>
+              <div className='col' style={{textAlign:'left'}}>
+                <div className='py-2 d-flex'>
                   <div><strong>{i + 1} :&nbsp;</strong></div>
-                  <div style={{textAlign:'left', width:"calc(100% - 65px)"}}><strong>{q.question}</strong>
+                  <div style={{textAlign:'left', width:'calc(100% - 65px)'}}><strong>{q.question}</strong>
                   {q.options && q.options.map((option, i) => (<div key={i}>{option}</div>))}
-                  {q.img && <div className="py-4"><img src={q.img} alt="question"/></div>}
+                  {q.img && <div className='py-4'><img src={q.img} alt='question'/></div>}
                   </div>
                 </div>
                 <div style={{marginLeft:'20px'}}>
                   {q.answers.map((a) => 
-                    (<div key={a.id} className="my-1 py-1 d-flex clickable"  onClick={() => toggleAnswer(q.id, a.id, q.answerId)}>
-                      <div><div className={"btn btn-sm" + (checkSelect(q.id, a.id) ? " btn-primary" : " btn-secondary")} style={{marginRight:'10px'}}>{letters[a.id]}</div></div><div>{a.desc}</div></div>)
+                    (<div key={a.id} className='my-1 py-1 d-flex clickable'  onClick={() => toggleAnswer(q.id, a.id, q.answerId)}>
+                      <div><div className={'btn btn-sm' + (checkSelect(q.id, a.id) ? ' btn-primary' : ' btn-secondary')} style={{marginRight:'10px'}}>{letters[a.id]}</div></div><div>{a.desc}</div></div>)
                   )}
                 </div>
                 {isScored && 
-                <div className="my-3">
-                  <div style={{marginBottom:'5px'}} className="border p-3">
+                <div className='my-3'>
+                  <div style={{marginBottom:'5px'}} className='border p-3'>
                     <div style={{marginBottom:'5px'}}>Correct Answer(s):
                       {q.answerId.map((aId) => (<strong key={aId}>{letters[aId]}</strong>))}
                     </div>
@@ -261,8 +221,8 @@ function App() {
           )
         )}
         </div>
-        <div className="my-4">
-          {!isScored && isStarted && <div className="btn btn-lg btn-primary" onClick={() => {scoreTest()}}>Score Test</div>}
+        <div className='my-4'>
+          {!isScored && isStarted && <div className='btn btn-lg btn-primary' onClick={() => {scoreTest()}}>Score Test</div>}
         </div>
       </div>
     </div>

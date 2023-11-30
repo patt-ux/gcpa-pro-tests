@@ -1,5 +1,5 @@
-import code0007100001 from './images/code0007100001.png';
-import code72e15b4b from './images/code72e15b4b.png';
+import code0007100001 from '../images/code0007100001.png';
+import code72e15b4b from '../images/code72e15b4b.png';
 
 export const setA = [
     {
@@ -1353,24 +1353,7 @@ export const setG = [
         ],
         'answerId': [0],
         'rationale': [
-            {'id':0, 'desc':'" The effective policy for a resource is the union of the policy set on the resource and the policy inherited from its ancestors. This inheritance is transitive. In other words, resources inherit policies from the project, which inherit policies from the organization "'}
+            {'id':0, 'desc':`The effective policy for a resource is the union of the policy set on the resource and the policy inherited from its ancestors. This inheritance is transitive. In other words, resources inherit policies from the project, which inherit policies from the organization`}
         ]
     },
 ];
-/*
-
-    {
-        'id':20216,
-        'question':``,
-        'answers': [
-            {'id':0, 'desc':''},
-            {'id':1, 'desc':''},
-            {'id':2, 'desc':''},
-            {'id':3, 'desc':''},
-        ],
-        'answerId': [1],
-        'rationale': [
-            {'id':1, 'desc':``}
-        ]
-    },
-*/
