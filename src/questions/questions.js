@@ -431,6 +431,18 @@ export const setB = [
         'rationale': [
             {'id':0, 'desc':`https://www.sans.org/reading-room/whitepapers/compliance/ways-reduce-pci-dss-audit-scope-tokenizing-cardholder-data-33194`}
         ]
+    },
+    {
+        'id':2216,
+        'question':`True or False? Networks Isolate Systems`,
+        'answers': [
+            {'id':0, 'desc':'True'},
+            {'id':1, 'desc':'False'},
+        ],
+        'answerId': [0],
+        'rationale': [
+            {'id':0, 'desc':``}
+        ]
     }
 ];
 
@@ -1072,6 +1084,54 @@ export const setE = [
         'answerId': [3],
         'rationale': []
     },
+    {
+        'id':2420,
+        'question':`Mountkirk Games has deployed their new backend on Google Cloud Platform (GCP). You want to create a thorough testing process for new versions of the backend before they are released to the public. You want the testing environment to scale in an economical way. How should you design the process?`,
+        'answers': [
+            {'id':0, 'desc':'Create a scalable environment in Google Cloud for simulating production load.'},
+            {'id':1, 'desc':'Use the existing infrastructure to test the Google Cloud-based backend at scale.'},
+            {'id':2, 'desc':'Build stress tests into each component of your application and use resources from the already deployed production backend to simulate load.'},
+            {'id':3, 'desc':'Create a set of static environments in Google Cloud to test different levels of load—for example, high, medium, and low.'},
+        ],
+        'answerId': [0],
+        'rationale': [{'id':0, 'desc':`Simulating production load in Google Cloud can scale in an economical way.`},]
+    },
+    {
+        'id':2421,
+        'question':`Mountkirk Games wants to set up a continuous delivery pipeline. Their architecture includes many small services that they want to be able to update and roll back quickly. Mountkirk Games has the following requirements: (1) Services are deployed redundantly across multiple regions in the US and Europe, (2) Only frontend services are exposed on the public internet, (3) They can reserve a single frontend IP for their fleet of services, and (4) Deployment artifacts are immutable. Which set of products should they use?`,
+        'answers': [
+            {'id':0, 'desc':'Cloud Storage, Cloud Dataflow, Compute Engine'},
+            {'id':1, 'desc':'Cloud Storage, App Engine, Cloud Load Balancing'},
+            {'id':2, 'desc':'Container Registry, Google Kubernetes Engine, Cloud Load Balancing'},
+            {'id':3, 'desc':'Cloud Functions, Cloud Pub/Sub, Cloud Deployment Manager'},
+        ],
+        'answerId': [2],
+        'rationale': [{'id':0, 'desc':`-Google Kubernetes Engine is ideal for deploying small services that can be updated and rolled back quickly. It is a best practice to manage services using immutable containers. -Cloud Load Balancing supports globally distributed services across multiple regions. It provides a single global IP address that can be used in DNS records. Using URL Maps, the requests can be routed to only the services that Mountkirk wants to expose. -Container Registry is a single place for a team to manage Docker images for the services.`},]
+    },
+    {
+        'id':2422,
+        'question':``,
+        'answers': [
+            {'id':0, 'desc':''},
+            {'id':1, 'desc':''},
+            {'id':2, 'desc':''},
+            {'id':3, 'desc':''},
+        ],
+        'answerId': [],
+        'rationale': [{'id':0, 'desc':``},]
+    },
+    {
+        'id':2423,
+        'question':``,
+        'answers': [
+            {'id':0, 'desc':''},
+            {'id':1, 'desc':''},
+            {'id':2, 'desc':''},
+            {'id':3, 'desc':''},
+        ],
+        'answerId': [],
+        'rationale': [{'id':0, 'desc':``},]
+    }
 ];
 
 export const setF = [

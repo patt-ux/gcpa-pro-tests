@@ -5,12 +5,6 @@ import { set1, set2, set3, set4, set5, set6, set7, set8, set9, set10, set11, set
 import { setA, setB, setC, setD, setE, setF, setG } from './questions/questions';
 
 function App() {
-
-  const [showMK, setShowMK] = useState(false);
-  const [showHC, setShowHC] = useState(false);
-  const [showHRL, setShowHRL] = useState(false);
-  const [showTE, setShowTE] = useState(false);
-
   const sets = [set1, set2, set3, set4, set5, set6, set7, set8, set9, set10, set11, set12];
   const miscSets = [
     {name:'Set A - Random Questions',set:setA},
@@ -138,37 +132,24 @@ function App() {
   return (
     <div className='App'>
       <div className='caseStudyBox'>
-        <div>CASE STUDIES</div>
-        <div className='cs'>
-          <div className='cs-title' onClick={() => {setShowMK(!showMK)}}>MountKirk</div>
-          {showMK &&
-          <div className='cs-details'><a target='_blank' href='https://services.google.com/fh/files/blogs/master_case_study_mountkirk_games.pdf' rel='noreferrer'>DETAILS</a></div>
-          }
-        </div>
-        <div className='cs'>
-          <div className='cs-title' onClick={() => {setShowTE(!showTE)}}>TerramEarth</div>
-          {showTE &&
-          <div className='cs-details'><a target='_blank' href='https://services.google.com/fh/files/blogs/master_case_study_terramearth.pdf' rel='noreferrer'>DETAILS</a></div>
-          }
-        </div>
-        <div className='cs'>
-          <div className='cs-title' onClick={() => {setShowHRL(!showHRL)}}>Helicopter Racing League</div>
-          {showHRL &&
-          <div className='cs-details'><a target='_blank' href='https://services.google.com/fh/files/blogs/master_case_study_helicopter_racing_league.pdf' rel='noreferrer'>DETAILS</a></div>
-          }
-        </div>
-        <div className='cs'>
-          <div className='cs-title' onClick={() => {setShowHC(!showHC)}}>EHR Healthcare</div>
-          {showHC &&
-          <div className='cs-details'><a target='_blank' href='https://services.google.com/fh/files/blogs/master_case_study_ehr_healthcare.pdf' rel='noreferrer'>DETAILS</a></div>
-          }
-        </div>
+        <h5>DIRECTIONS</h5>
+        <div><p>Click a question set (like CH1) to see the question practice set.</p>
+        <p>Each Set will be randomized and include the suggested time limit for the question set.</p>
+        <p>Click "SCORE TEST" when you have finished answering questions to see your score and the correct answer.</p>
+        <p>Go through each set multiple timess until you are able to score 100% each time.</p></div>
+        <h5 className='mt-4 pt-2'>CASE STUDY LINKS</h5>
+        <p>Use these links to review the Case Studies for the Exam:</p>
+        <div className='cs'><a target='_blank' href='https://services.google.com/fh/files/blogs/master_case_study_mountkirk_games.pdf' rel='noopener noreferrer'>MountKirk</a></div>
+        <div className='cs'><a target='_blank' href='https://services.google.com/fh/files/blogs/master_case_study_terramearth.pdf' rel='noopener noreferrer'>TerramEarth</a></div>
+        <div className='cs'><a target='_blank' href='https://services.google.com/fh/files/blogs/master_case_study_helicopter_racing_league.pdf' rel='noopener noreferrer'>Helicopter Racing League</a></div>
+        <div className='cs'><a target='_blank' href='https://services.google.com/fh/files/blogs/master_case_study_ehr_healthcare.pdf' rel='noopener noreferrer'>EHR Healthcare</a></div>
       </div>
-      <div className='container' style={{maxWidth:'700px'}}>
+      <div className='questionBox'>
         <div className='py-2 mt-4'>
-        <h3>GCP Architect Pro - Test Questions</h3>
+        <h2>GCP Architect Pro - Test Questions</h2>
         </div>
-        <div className='py-2 mt-4'>
+        <div className='container' style={{maxWidth:"700px"}}>
+        <div className='py-2 mt-2'>
           <div className='course-btns'>
             <div>GCP Prep Course Questions</div>
             {sets.map((a, index) => 
@@ -223,6 +204,7 @@ function App() {
         </div>
         <div className='my-4'>
           {!isScored && isStarted && <div className='btn btn-lg btn-primary' onClick={() => {scoreTest()}}>Score Test</div>}
+        </div>
         </div>
       </div>
     </div>
