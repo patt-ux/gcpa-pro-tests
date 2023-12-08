@@ -1106,31 +1106,32 @@ export const setE = [
             {'id':3, 'desc':'Cloud Functions, Cloud Pub/Sub, Cloud Deployment Manager'},
         ],
         'answerId': [2],
-        'rationale': [{'id':0, 'desc':`-Google Kubernetes Engine is ideal for deploying small services that can be updated and rolled back quickly. It is a best practice to manage services using immutable containers. -Cloud Load Balancing supports globally distributed services across multiple regions. It provides a single global IP address that can be used in DNS records. Using URL Maps, the requests can be routed to only the services that Mountkirk wants to expose. -Container Registry is a single place for a team to manage Docker images for the services.`},]
+        'rationale': [{'id':2, 'desc':`-Google Kubernetes Engine is ideal for deploying small services that can be updated and rolled back quickly. It is a best practice to manage services using immutable containers. -Cloud Load Balancing supports globally distributed services across multiple regions. It provides a single global IP address that can be used in DNS records. Using URL Maps, the requests can be routed to only the services that Mountkirk wants to expose. -Container Registry is a single place for a team to manage Docker images for the services.`},]
     },
     {
         'id':2422,
-        'question':``,
+        'question':`Your customer is moving their corporate applications to Google Cloud. The security team wants detailed visibility of all resources in the organization. You use Resource Manager to set yourself up as the Organization Administrator. Which Cloud Identity and Access Management (Cloud IAM) roles should you give to the security team while following Google recommended practices?`,
         'answers': [
-            {'id':0, 'desc':''},
-            {'id':1, 'desc':''},
-            {'id':2, 'desc':''},
-            {'id':3, 'desc':''},
+            {'id':0, 'desc':'Organization viewer, Project owner'},
+            {'id':1, 'desc':'Organization viewer, Project viewer'},
+            {'id':2, 'desc':'Organization administrator, Project browser'},
+            {'id':3, 'desc':'Project owner, Network administrator'},
         ],
-        'answerId': [],
-        'rationale': [{'id':0, 'desc':``},]
+        'answerId': [1],
+        'rationale': [{'id':1, 'desc':`-Organization viewer grants the security team permissions to view the organization's display name.
+        -Project viewer grants the security team permissions to see the resources within projects.`},]
     },
     {
         'id':2423,
-        'question':``,
+        'question':`The database administration team has asked you to help them improve the performance of their new database server running on Compute Engine. The database is used for importing and normalizing the company’s performance statistics. It is built with MySQL running on Debian Linux. They have an n1-standard-8 virtual machine with 80 GB of SSD zonal persistent disk which they can't restart until the next maintenance event. What should they change to get better performance from this system as soon as possible and in a cost-effective manner?`,
         'answers': [
-            {'id':0, 'desc':''},
-            {'id':1, 'desc':''},
-            {'id':2, 'desc':''},
-            {'id':3, 'desc':''},
+            {'id':0, 'desc':'Increase the virtual machine’s memory to 64 GB.'},
+            {'id':1, 'desc':'Create a new virtual machine running PostgreSQL.'},
+            {'id':2, 'desc':'Dynamically resize the SSD persistent disk to 500 GB.'},
+            {'id':3, 'desc':'Migrate their performance metrics warehouse to BigQuery.'},
         ],
-        'answerId': [],
-        'rationale': [{'id':0, 'desc':``},]
+        'answerId': [2],
+        'rationale': [{'id':2, 'desc':`Persistent disk performance is based on the total persistent disk capacity attached to an instance and the number of vCPUs that the instance has. Incrementing the persistent disk capacity will increment its throughput and IOPS, which in turn improve the performance of MySQL.`},]
     }
 ];
 
